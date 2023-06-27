@@ -1,0 +1,54 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="12">
+            <item index="0" class="java.lang.String" itemvalue="aiohttp" />
+            <item index="1" class="java.lang.String" itemvalue="multidict" />
+            <item index="2" class="java.lang.String" itemvalue="yarl" />
+            <item index="3" class="java.lang.String" itemvalue="frozenlist" />
+            <item index="4" class="java.lang.String" itemvalue="google-auth-oauthlib" />
+            <item index="5" class="java.lang.String" itemvalue="google-api-python-client" />
+            <item index="6" class="java.lang.String" itemvalue="google-auth" />
+            <item index="7" class="java.lang.String" itemvalue="google-crc32c" />
+            <item index="8" class="java.lang.String" itemvalue="firebase-admin" />
+            <item index="9" class="java.lang.String" itemvalue="grpcio" />
+            <item index="10" class="java.lang.String" itemvalue="greenlet" />
+            <item index="11" class="java.lang.String" itemvalue="psutil" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N802" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="django.db.models.fields.related.ForeignKey.*" />
+          <option value="api.models.Month" />
+          <option value="api.models.Admin.*" />
+          <option value="api.models.Worker.*" />
+          <option value="rest_framework.authtoken.models.Token.*" />
+          <option value="api.models.UserInfo.objects" />
+          <option value="api.models.Company.objects" />
+          <option value="api.models.objects" />
+          <option value="api.models.Month.days" />
+          <option value="django.db.models.fields.files.ImageField.path" />
+          <option value="api.models.Tariff.objects" />
+          <option value="api.models.Kassa24Credentials.objects" />
+          <option value="zhazira.website.models.timezone" />
+          <option value="zhazira.website.models.Day.objects" />
+          <option value="zhazira.website.models.Diseases.objects" />
+          <option value="api.models.Day.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

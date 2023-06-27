@@ -1,0 +1,7 @@
+{% extends "admin/index.html" %}
+{% load i18n admin_static %}
+
+{% block content %}
+    {{ block.super }}
+    <a href="{% url 'myurl' %}" class="btn btn-high btn-success">My Custom Button</a>
+{% endblock %}
