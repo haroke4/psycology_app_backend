@@ -28,29 +28,21 @@ def parseSheetAndSaveAsJson(cell_range_start, cell_range_stop):
         answer_list = []
         question = ''
 
-        match task_type:
-            case TaskTypes.SELECT:
-                # if answer list is none so just buttons go next and go prev
+        if task_type == TaskTypes.SELECT:
+            # if answer list is none so just buttons go next and go prev
+            temp_answer_list = i[4].value
+            if temp_answer_list is not None:
+                next_page = ''
 
-                temp_answer_list = i[4].value
-                if temp_answer_list is not None:
-                    next_page = ''
+                temp = temp_answer_list.split(';')
+                answer_list = [{'text': i.split('=')[0], 'go_to': i.split('=')[1]} for i in temp]
 
-                    temp = temp_answer_list.split(';')
-                    answer_list = [{'text': i.split('=')[0], 'go_to': i.split('=')[1]} for i in temp]
 
-            case TaskTypes.APPEAL:
-                if i[5].value is not None:
-                    question += i[5].value
+        elif task_type == TaskTypes.APPEAL:
+            if i[5].value is not None:
+                question += i[5].value
 
-            case TaskTypes.FREETEXT:
-                pass
-
-            case TaskTypes.SPEECH:
-                pass
-
-            case _:
-                continue
+            pass
 
         response.append({
             "id": str(page_id),
