@@ -13,6 +13,7 @@ urlpatterns = [
     path('audio_list', views.AudioList.as_view()),
     path('check_audio_meta', views.CheckAudioMeta.as_view()),
     path('create_user_free_text_task', views.CreateFreeTextTaskAnswer.as_view()),
+    path('get_no_voice_recognition_models', views.GetNoVoiceRecognitionModel.as_view()),
     path('get_audio_file/<int:id>', views.GetAudio.as_view()),
 
     # for admins
