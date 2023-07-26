@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
@@ -9,10 +10,7 @@ from .forms import *
 from .parse_sheet import parseSheetAndSaveAsJson
 
 
-class MultiFileFieldForm(forms.Form):
-    file_field = MultipleFileField()
-
-
+#
 class AddAudioView(FormView):
     form_class = MultiFileFieldForm
     template_name = "upload_audios.html"  # Replace with your template.
@@ -27,6 +25,9 @@ class AddAudioView(FormView):
         return redirect('/admin/login')
 
     def post(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return redirect('/admin/login')
+
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         if form.is_valid():
@@ -68,6 +69,9 @@ class UploadSheetView(FormView):
         return redirect('/admin/login')
 
     def post(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return redirect('/admin/login')
+
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         if form.is_valid():

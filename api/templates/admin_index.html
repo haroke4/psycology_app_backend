@@ -1,7 +1,15 @@
-{% extends "admin/index.html" %}
-{% load i18n admin_static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main admin page</title>
+</head>
+<body>
+    <h1>Main admin page</h1>
+    <p>  <a href="add_audio"> Обновить таблицу </a> </p>
+    <p>  <a href="add_sheet"> Обновить таблицу </a> </p>
+    <p> ID страниц без распознавание голоса: </p>
 
-{% block content %}
-    {{ block.super }}
-    <a href="{% url 'myurl' %}" class="btn btn-high btn-success">My Custom Button</a>
-{% endblock %}
+
+
+</body>
+</html>

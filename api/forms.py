@@ -45,3 +45,4 @@ class UploadSheetForm(forms.Form):
                 raise forms.ValidationError('Only .xlsx files are allowed.')
 
         return file
+
