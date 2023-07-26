@@ -1,17 +1,12 @@
-import base64
 import json
-import os
 
-import requests
-from django.utils import timezone
-
-from rest_framework import generics, permissions, status
-from rest_framework.views import APIView
+from django.http import FileResponse
+from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from api import models
-from django.http import FileResponse
-from django.contrib.auth.models import User
 
 UP_TO_DATE = 'Up to date'
 
@@ -29,7 +24,7 @@ def up_to_date():
 
 
 class GetActions(APIView):
-    def get(self, request: Request):
+    def get(self, request: Request, *args, **kwargs):
         last_version = models.ActionVersion.objects.first().version_number
         with open('files/data.json', 'r') as f:
             data = {'version': last_version, 'actions': json.load(f)}
@@ -48,7 +43,7 @@ class GetActions(APIView):
 
 
 class AudioList(APIView):
-    def get(self, request: Request):
+    def get(self, request: Request, *args, **kwargs):
         """
         Get list of audio data
         :param request:
@@ -63,7 +58,7 @@ class AudioList(APIView):
 
         return success_with_text(data)
 
-    def post(self, request: Request):
+    def post(self, request: Request, *args, **kwargs):
         """
         Check audio list that user gives, and decide whether update or not
         :param request:
@@ -89,7 +84,7 @@ class AudioList(APIView):
 
 
 class CheckAudioMeta(APIView):
-    def post(self, request: Request):
+    def post(self, request: Request, *args, **kwargs):
         data = request.data
 
         try:
@@ -138,3 +133,8 @@ class CreateFreeTextTaskAnswer(APIView):
         model.save()
 
         return success_with_text(True)
+
+
+class GetNoVoiceRecognitionModel(APIView):
+    def post(self, request: Request, *args, **kwargs):
+        return success_with_text([i.task_id for i in models.NoVoiceRecognitionModel.objects.all()])

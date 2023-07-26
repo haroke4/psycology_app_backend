@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-zh#kkmw4als=)y+%6t-tg0xedypfrgq0!a4md0d$^1f(7#a*$6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 DATA_UPLOAD_MAX_NUMBER_FILES = 500
-TOKEN_EXPIRED_AFTER_HOURS = 720 # 30 days
+TOKEN_EXPIRED_AFTER_HOURS = 720  # 30 days
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '10.0.2.2']
 
 # Application definition
@@ -74,7 +74,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'api.authentication.ExpiringTokenAuthentication'
     ],
-
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
@@ -130,3 +132,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
