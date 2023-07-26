@@ -136,5 +136,5 @@ class CreateFreeTextTaskAnswer(APIView):
 
 
 class GetNoVoiceRecognitionModel(APIView):
-    def post(self, request: Request, *args, **kwargs):
+    def get(self, request: Request, *args, **kwargs):
         return success_with_text([i.task_id for i in models.NoVoiceRecognitionModel.objects.all()])
