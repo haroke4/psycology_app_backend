@@ -38,7 +38,7 @@ def parseSheetAndSaveAsJson(cell_range_start, cell_range_stop):
                 next_page = ''
 
                 temp = temp_answer_list.split(';')
-                answer_list = [{'text': i.split('=')[0], 'go_to': i.split('=')[1]} for i in temp if ';' in i]
+                answer_list = [{'text': i.split('=')[0], 'go_to': i.split('=')[1]} for i in temp if '=' in i]
 
 
         elif task_type == TaskTypes.APPEAL:
