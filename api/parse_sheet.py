@@ -20,6 +20,9 @@ def parseSheetAndSaveAsJson(cell_range_start, cell_range_stop):
 
     for i in cell_range:
         value_0 = i[0].value
+        if value_0 == '' or value_0 is None:
+            continue
+
         value_2 = i[2].value
 
         page_id = str(value_0) if type(value_0) is not float else str(int(value_0))
