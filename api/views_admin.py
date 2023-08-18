@@ -87,12 +87,9 @@ class UploadSheetView(FormView):
         with open('files/data.xlsx', 'wb') as f:
             f.write(file.read())
 
-        try:
             parseSheetAndSaveAsJson(cell_range_start, cell_range_stop)
             a = models.ActionVersion.objects.first()
             a.new_version()
 
             return HttpResponse('Sheet uploaded successfully!')
 
-        except Exception as e:
-            return HttpResponse(f'Invalid cell ranges. Python error: {e}')
