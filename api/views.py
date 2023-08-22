@@ -5,6 +5,7 @@ from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import permissions, authentication
 
 from api import models
 
@@ -138,3 +139,33 @@ class CreateFreeTextTaskAnswer(APIView):
 class GetNoVoiceRecognitionModel(APIView):
     def get(self, request: Request, *args, **kwargs):
         return success_with_text([i.task_id for i in models.NoVoiceRecognitionModel.objects.all()])
+
+
+class AddNoVoiceRecognitionModel(APIView):
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAdminUser]
+
+    def post(self, request: Request, *args, **kwargs):
+        text: str = request.data.get('data', None)
+        if text is None:
+            return error_with_text('No data')
+        try:
+            for i in text.split(', '):
+                a = models.NoVoiceRecognitionModel(task_id=i)
+                a.save()
+            return success_with_text('ok')
+        except Exception as e:
+            return error_with_text(f'error: {e}')
+
+    def delete(self, request: Request, *args, **kwargs):
+        id_: str = request.data.get('id', None)
+
+        if id_ is None:
+            return error_with_text('no id')
+
+        try:
+            a = models.NoVoiceRecognitionModel.objects.filter(task_id=id_).first()
+            a.delete()
+            return success_with_text('ok')
+        except Exception as e:
+            return error_with_text(f'error: {e}')

@@ -17,6 +17,8 @@ urlpatterns = [
     path('get_audio_file/<int:id>', views.GetAudio.as_view()),
 
     # for admins
+    path('admin', views_admin.IndexView.as_view()),
+    path('add_no_voice_recognition_models', views.AddNoVoiceRecognitionModel.as_view()),
     path('add_audio', views_admin.AddAudioView.as_view()),
     path('add_sheet', views_admin.UploadSheetView.as_view())
 ]
